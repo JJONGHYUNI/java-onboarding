@@ -10,11 +10,12 @@ public class Problem2 {
     public static String solution(String cryptogram) {
         String answer = cryptogram;
         while (true){
-            int idx = isDuplicateLetter(answer);
-            if(idx==-1){
+
+            String temp = isDuplicateLetter(answer);
+            if(temp.length()==answer.length()){
                 break;
             }
-            answer = deleteDuplicateLetter(answer,idx);
+            answer = temp;
         }
         return answer;
     }
@@ -33,8 +34,15 @@ public class Problem2 {
         return false;
     }
 
-    private final static int isDuplicateLetter(String checkStr){
-
+    private final static String isDuplicateLetter(String checkStr){
+        String answer="";
+        for(int i = 0; i<checkStr.length();i++){
+            char checkChar = checkStr.charAt(i);
+            if(checkChar!=frontIdx(i,checkStr)&&checkChar!=backIdx(i,checkStr)){
+                answer+=checkChar;
+            }
+        }
+        return answer;
     }
     private final static char frontIdx(int idx,String checkStr){
         if(idx==0){
