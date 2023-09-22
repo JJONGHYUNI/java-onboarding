@@ -3,15 +3,19 @@ package onboarding;
 import java.util.List;
 
 class Problem1 {
+    private final static int EXCEPTION_NUM = -1;
+    private final static int CRONG_WIN = 2;
+    private final static int POBI_WIN = 1;
+    private final static int DRAW_GAME = 0;
+    
     public static int solution(List<Integer> pobi, List<Integer> crong) {
-        int answer = Integer.MAX_VALUE;
         char[] pobi1 = intToChar(pobi.get(0));
         char[] pobi2 = intToChar(pobi.get(1));
         char[] crong1 = intToChar(crong.get(0));
         char[] crong2 = intToChar(crong.get(1));
         int maxPobi = compare(compare(sum(pobi1),multi(pobi1)),compare(sum(pobi2),multi(pobi2)));
         int maxCrong = compare(compare(sum(crong1),multi(crong1)),compare(sum(crong2),multi(crong2)));
-        return answer;
+        return whoWin(maxPobi,maxCrong);
     }
     private static int whoWin(int num1, int num2){
         if(num1>num2){
@@ -37,9 +41,9 @@ class Problem1 {
         return Sum;
     }
     private static int multi(char[] num){
-        int Multi = 0;
+        int Multi = 1;
         for (int i = 0; i<num.length;i++){
-            Multi = Character.getNumericValue(num[i]);
+            Multi *= Character.getNumericValue(num[i]);
         }
         return Multi;
     }
