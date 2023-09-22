@@ -7,12 +7,14 @@ class Problem1 {
         int answer = Integer.MAX_VALUE;
         return answer;
     }
-    private static int sum(int num){
-        String strNum = Integer.toString(num);
+    private static int sum(char[] num){
         int Sum = 0;
-        for (int i = 0; i<strNum.length();i++){
-            Sum+=Character.getNumericValue(strNum.charAt(i));
+        for (int i = 0; i<num.length;i++){
+            Sum+=Character.getNumericValue(num[i]);
         }
         return Sum;
+    }
+    private static char[] intToChar(int num){
+        return Integer.toString(num).toCharArray();
     }
 }
