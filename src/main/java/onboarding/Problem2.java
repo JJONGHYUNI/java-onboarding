@@ -8,5 +8,13 @@ public class Problem2 {
         String answer = "answer";
         return answer;
     }
+
+    private final static boolean validateInput(String checkStr){
+        if(checkStr.length()<1 || checkStr.length()>1000){
+            return false;
+        }
+        return true;
+    }
     
+
 }
