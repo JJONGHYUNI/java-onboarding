@@ -7,7 +7,11 @@ public class Problem2 {
     private final static int MAX_LENGTH = 1000;
     private final static int MIN_LENGTH = 1;
     private final static String CHECK_LOWER_CASE = "[a-z]+";
+    private final static String NOT_VALIDATE = "유효하지 않은 입력 값";
     public static String solution(String cryptogram) {
+        if(validateInput(cryptogram) || validateLower(cryptogram)){
+            return NOT_VALIDATE;
+        }
         String answer = cryptogram;
         while (true){
 
@@ -22,13 +26,13 @@ public class Problem2 {
 
     private final static boolean validateInput(String checkStr){
         if(checkStr.length()<MIN_LENGTH || checkStr.length()>MAX_LENGTH){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private final static boolean validateLower(String checkStr){
-        if(checkStr.matches(CHECK_LOWER_CASE)){
+        if(!checkStr.matches(CHECK_LOWER_CASE)){
             return true;
         }
         return false;
