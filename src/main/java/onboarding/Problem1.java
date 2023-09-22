@@ -14,6 +14,13 @@ class Problem1 {
         }
         return Sum;
     }
+    private static int multi(char[] num){
+        int Multi = 0;
+        for (int i = 0; i<num.length;i++){
+            Multi = Character.getNumericValue(num[i]);
+        }
+        return Multi;
+    }
     private static char[] intToChar(int num){
         return Integer.toString(num).toCharArray();
     }
