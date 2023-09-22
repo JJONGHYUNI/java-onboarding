@@ -21,3 +21,9 @@
 | --- | --- |
 | "browoanoommnaon" | "brown" |
 | "zyelleyz" | "" |
+
+### 요구 사항 정리
+- [] 데이터 유효성 검사
+  - [] 1<=cryptogram<=1000
+  - [] cryptofram은 소문자로만 이루어짐
+- [] 연속하는 중복 문자 제거
