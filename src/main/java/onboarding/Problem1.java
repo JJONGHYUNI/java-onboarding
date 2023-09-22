@@ -13,6 +13,16 @@ class Problem1 {
         int maxCrong = compare(compare(sum(crong1),multi(crong1)),compare(sum(crong2),multi(crong2)));
         return answer;
     }
+    private static int whoWin(int num1, int num2){
+        if(num1>num2){
+            return 1;
+        }else if(num1==num2){
+            return 0;
+        }else if(num1<num2){
+            return 2;
+        }
+        return -1;
+    }
     private static int compare(int num1, int num2){
         if(num1>num2){
             return num1;
