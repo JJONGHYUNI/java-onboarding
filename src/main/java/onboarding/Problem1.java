@@ -72,6 +72,7 @@ class Problem1 {
         }
         return Multi;
     }
+
     private static char[] intToChar(int num){
         return Integer.toString(num).toCharArray();
     }
