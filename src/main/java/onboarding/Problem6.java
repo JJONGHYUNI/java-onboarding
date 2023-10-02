@@ -1,22 +1,35 @@
 package onboarding;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Problem6 {
     private final static String CHECK_DOMAIN = "email.com";
     private static HashMap<String, Member> twoLetterList = new HashMap<>();
+    private static HashSet<String> duplicateEmailList = new HashSet<>();
     public static List<String> solution(List<List<String>> forms) {
         List<String> answer = List.of("answer");
         List<Member> memberList = forms.stream().map(form -> new Member(form.get(0),form.get(1))).collect(Collectors.toList());
         memberList.forEach(member -> setTwoLetterList(member));
-        
+
         return answer;
     }
     private static void setTwoLetterList(Member member){
         for(int i = 0; i < member.getName().length()-1; i++){
             twoLetterList.put(member.getName().substring(i,i+2),member);
+        }
+    }
+
+    private static void isDuplicateMember(Member member){
+        String name = member.getName();
+        for(int i = 0; i < name.length()-1; i++){
+            String slice = name.substring(i,i+2);
+            if(twoLetterList.containsKey(slice) && twoLetterList.get(slice).getName() != name){
+                member.setDuplicated();
+                return;
+            }
         }
     }
     private static boolean validatecrewNumRange(int range){
