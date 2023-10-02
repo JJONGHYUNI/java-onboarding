@@ -1,5 +1,6 @@
 package onboarding;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,12 @@ public class Problem5 {
     private final static int[] MONEY_LIST = {50000, 10000, 5000, 1000, 500, 100, 50, 10, 1};
 
     public static List<Integer> solution(int money) {
-        List<Integer> answer = Collections.emptyList();
+        List<Integer> answer = new ArrayList<>();
+        for(int i = 0; i < MONEY_LIST.length; i++){
+            DivisionMoney divisionMoney = divisionForEachMoney(money, MONEY_LIST[i]);
+            answer.add(divisionMoney.quotitent);
+            money = divisionMoney.remainder;
+        }
         return answer;
     }
 
