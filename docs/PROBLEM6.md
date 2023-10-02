@@ -21,3 +21,14 @@
 | forms | result |
 | --- | --- |
 | [ ["jm@email.com", "제이엠"], ["jason@email.com", "제이슨"], ["woniee@email.com", "워니"], ["mj@email.com", "엠제이"], ["nowm@email.com", "이제엠"] ] | ["jason@email.com", "jm@email.com", "mj@email.com"] |
+
+### 요구 사항 정리
+-[] 데이터 유효성 검사
+    -[] 1 <= 크루 <= 10000;
+    -[] 11 <= 이메일 길이 < 20;
+    -[] @뒤에 email.com만 허용
+    -[] 닉네임은 한글만 허용
+    -[] 1 <= 닉네임 길이 < 20;
+-[] 닉네임을 두글자로 나눈 HashMap 생성
+-[] 중복 닉네임 검사 함수
+-[] 주어진 forms를 담을 Member Class 구현
