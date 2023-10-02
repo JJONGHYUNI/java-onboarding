@@ -1,15 +1,23 @@
 package onboarding;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Problem6 {
     private final static String CHECK_DOMAIN = "email.com";
+    private static HashMap<String, Member> twoLetterList = new HashMap<>();
     public static List<String> solution(List<List<String>> forms) {
         List<String> answer = List.of("answer");
         List<Member> memberList = forms.stream().map(form -> new Member(form.get(0),form.get(1))).collect(Collectors.toList());
-
+        memberList.forEach(member -> setTwoLetterList(member));
+        
         return answer;
+    }
+    private static void setTwoLetterList(Member member){
+        for(int i = 0; i < member.getName().length()-1; i++){
+            twoLetterList.put(member.getName().substring(i,i+2),member);
+        }
     }
     private static boolean validatecrewNumRange(int range){
         return range>=1 && range<=10000;
@@ -37,7 +45,7 @@ public class Problem6 {
 
         Member(String email, String name){
             this.email = email;
-            this.name = name;
+            this.nickname = name;
             this.duplicated = false;
         }
 
@@ -46,7 +54,7 @@ public class Problem6 {
         }
 
         public String getName() {
-            return name;
+            return nickname;
         }
 
         public boolean isDuplicated() {
