@@ -1,5 +1,6 @@
 package onboarding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -7,31 +8,44 @@ import java.util.stream.Collectors;
 
 public class Problem6 {
     private final static String CHECK_DOMAIN = "email.com";
-    private static HashMap<String, Member> twoLetterList = new HashMap<>();
+    private static HashMap<String, List<Member>> twoLetterList = new HashMap<>();
     private static HashSet<String> duplicateEmailList = new HashSet<>();
     public static List<String> solution(List<List<String>> forms) {
-        List<String> answer = List.of("answer");
         List<Member> memberList = forms.stream().map(form -> new Member(form.get(0),form.get(1))).collect(Collectors.toList());
         memberList.forEach(member -> setTwoLetterList(member));
-
+        saveDuplicateMember();
+        List<String> answer = new ArrayList<>(duplicateEmailList)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
         return answer;
     }
-    private static void setTwoLetterList(Member member){
-        for(int i = 0; i < member.getName().length()-1; i++){
-            twoLetterList.put(member.getName().substring(i,i+2),member);
-        }
-    }
 
-    private static void isDuplicateMember(Member member){
-        String name = member.getName();
-        for(int i = 0; i < name.length()-1; i++){
-            String slice = name.substring(i,i+2);
-            if(twoLetterList.containsKey(slice) && twoLetterList.get(slice).getName() != name){
-                member.setDuplicated();
-                return;
+    private static void saveDuplicateMember(){
+        for(String key : twoLetterList.keySet()){
+            List<Member> currentMembers = twoLetterList.get(key);
+            if(currentMembers.size()!=1){
+                currentMembers.forEach(member -> duplicateEmailList.add(member.email));
             }
         }
     }
+    private static void setTwoLetterList(Member member){
+        String name = member.nickname;
+        for(int i = 0; i < name.length()-1; i++){
+            List<Member> members = new ArrayList<>();
+            String slice = name.substring(i, i+2);
+            if(twoLettersContainsKey(slice)) {
+                twoLetterList.get(slice).add(member);
+                continue;
+            }
+            members.add(member);
+            twoLetterList.put(slice,members);
+        }
+    }
+    private static boolean twoLettersContainsKey(String slice){
+        return twoLetterList.containsKey(slice);
+    }
+
     private static boolean validatecrewNumRange(int range){
         return range>=1 && range<=10000;
     }
@@ -54,28 +68,10 @@ public class Problem6 {
     private static class Member{
         private String email;
         private String nickname;
-        private boolean duplicated;
 
         Member(String email, String name){
             this.email = email;
             this.nickname = name;
-            this.duplicated = false;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getName() {
-            return nickname;
-        }
-
-        public boolean isDuplicated() {
-            return duplicated;
-        }
-
-        public void setDuplicated() {
-            this.duplicated = true;
         }
     }
 }
