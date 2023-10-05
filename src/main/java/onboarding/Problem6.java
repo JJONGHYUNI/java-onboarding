@@ -90,8 +90,8 @@ public class Problem6 {
         return nickname.length() >= 1 && nickname.length() < 20;
     }
     private static class Member{
-        private String email;
-        private String nickname;
+        private final String email;
+        private final String nickname;
 
         Member(String email, String name){
             this.email = email;

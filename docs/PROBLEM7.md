@@ -24,3 +24,12 @@
 | user | friends | visitors | result |
 | --- | --- | --- | --- |
 | "mrko" | [ ["donut", "andole"], ["donut", "jun"], ["donut", "mrko"], ["shakevan", "andole"], ["shakevan", "jun"], ["shakevan", "mrko"] ] | ["bedi", "bedi", "donut", "bedi", "shakevan"] | ["andole", "jun", "bedi"] |
+
+### 요구 사항 정리
+-[] 데이터 유효성 검사
+  -[] 1 <= user 길이 <= 30
+  -[] 1 <= friends 길이 <= 10000
+  -[] friends 각 원소 길이 == 2
+  -[] 1 <= friends 각 원소의 string 길이 <= 30
+  -[] 0 <= visitors 길이 <= 10000
+  -[] 아이디는 모두 소문자

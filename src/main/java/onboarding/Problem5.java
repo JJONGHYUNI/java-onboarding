@@ -6,6 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class Problem5 {
+    private static class DivisionMoney {
+        int quotitent;
+        int remainder;
+
+        public DivisionMoney(int quotitent, int remainder){
+            this.quotitent = quotitent;
+            this.remainder = remainder;
+        }
+    }
+
     private final static int MAX_LENGTH = 1000000;
     private final static int MIN_LENGTH = 1;
 
@@ -27,15 +37,5 @@ public class Problem5 {
 
     private static DivisionMoney divisionForEachMoney(int currentMoney, int divisionMoney){
         return new DivisionMoney(currentMoney/divisionMoney, currentMoney%divisionMoney);
-    }
-}
-
-class DivisionMoney {
-    int quotitent;
-    int remainder;
-
-    public DivisionMoney(int quotitent, int remainder){
-        this.quotitent = quotitent;
-        this.remainder = remainder;
     }
 }
